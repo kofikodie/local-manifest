@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc
+  labels:
+    app: mongo-svc
+spec:
+  ports:
+  - port: 27017
+    name: peer
+  clusterIP: None
+  selector: # This is the label that the StatefulSet uses to identify its pods
+    app: mongo-sts
