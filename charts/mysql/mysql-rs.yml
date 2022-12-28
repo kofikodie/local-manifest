@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mysql-rs
+  labels:
+    app: mysql-rs
+spec:
+  replicas: 1
+  selector: # Selects the pods that are part of the ReplicaSet
+    matchLabels:
+      app: mysql-rs
+  template: # The template for the pods that are part of the ReplicaSet
+    metadata:
+      labels:
+        app: mysql-rs
+        version: v1
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+          name: mysql
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        volumeMounts:
+        - name: mysql-db
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-db
+        persistentVolumeClaim:
+          claimName: mysql-db-pvc
