@@ -20,6 +20,8 @@ loki:
   datasource:
     jsonData: "{}"
     uid: ""
+  #service:
+  #  type: LoadBalancer
 
 
 promtail:
@@ -43,7 +45,6 @@ grafana:
       maxLines: 1000
   image:
     tag: 8.3.5
-  type: loadBalancer
 
 prometheus:
   enabled: false
