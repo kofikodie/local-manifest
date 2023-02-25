@@ -20,6 +20,6 @@ plg-password:
 	-o template \
 	--template '{{ index .data "admin-password" }}' | base64 -d; echo
 plg-forward:
-	kubectl port-forward service/loki-grafana 3000:80 -n loki	
+	kubectl port-forward service/loki-grafana 3000:80 -n loki
 plg-delete:
 	helm uninstall loki -n loki
