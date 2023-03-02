@@ -20,8 +20,6 @@ loki:
   datasource:
     jsonData: "{}"
     uid: ""
-  service:
-    type: LoadBalancer
 
 
 promtail:
